@@ -1,14 +1,16 @@
 const List = ({ todos, setTodos }) => {
-  console.log("here", todos)
+  // console.log("here", todos)
   const deleteTodo = (e) => {
-    let arr = [...todos]
-    let str = e.target.parentNode.parentNode.innerText
-    let idx = arr.indexOf(str)
-    console.log(idx)
-    if (idx !== -1) {
-      arr.splice(idx, 1)
-      setTodos(arr)
-      localStorage.setItem("todos", JSON.stringify(arr))
+    // Search for getting id of clicked list
+    // console.log("--------------------")
+    // console.log(e.target.parentNode.parentNode.id)
+    // console.log("--------------------")
+    let id = e.target.parentNode.parentNode.id
+    if (id) {
+      const afterDeletion = todos.filter((item) => item.id !== id)
+      // console.log(afterDeletion)
+      localStorage.setItem("todos", JSON.stringify(afterDeletion))
+      setTodos(afterDeletion)
     }
   }
 
@@ -23,11 +25,12 @@ const List = ({ todos, setTodos }) => {
   return (
     <div className="list">
       <ul>
-        {console.log(todos)}
-        {console.log(typeof todos)}
-        {todos.map((todo) => (
-          <li key={todo}>
-            <span>{todo}</span>
+        {/* {console.log(todos)}
+        {console.log(typeof todos)} */}
+        {todos.map((item) => (
+          <li key={item.id} id={item.id}>
+            {/* {console.log("okay here", item.id)} */}
+            <span>{item.todo}</span>
             <button className="todo-delete-btn" onClick={(e) => deleteTodo(e)}>
               <i
                 onMouseEnter={(e) => handleOnMouseEnter(e)}

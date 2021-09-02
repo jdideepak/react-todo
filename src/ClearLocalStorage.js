@@ -1,6 +1,6 @@
 const ClearLocalStorage = ({ todos, setTodos }) => {
   const handleOnClick = (e) => {
-    console.log(e)
+    // console.log(e)
     if (todos.length) {
       localStorage.setItem("todos", JSON.stringify([]))
       setTodos([])

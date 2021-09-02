@@ -1,3 +1,5 @@
+// importing uniqid to give a unique id to map
+import uniqid from "uniqid"
 import { useState } from "react"
 
 const TodoForm = ({ todos, setTodos }) => {
@@ -5,10 +7,14 @@ const TodoForm = ({ todos, setTodos }) => {
   const addItem = (e) => {
     e.preventDefault()
     if (todo.length) {
-      setTodos([...todos, todo])
-      localStorage.setItem("todos", JSON.stringify([...todos, todo]))
+      const getUniqueId = uniqid()
+      localStorage.setItem(
+        "todos",
+        JSON.stringify([...todos, { id: getUniqueId, todo: todo }])
+      )
+      setTodos([...todos, { id: getUniqueId, todo: todo }])
+      setTodo("")
     }
-    setTodo("")
   }
 
   const handleInputChange = (e) => {
