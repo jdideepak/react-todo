@@ -1,4 +1,6 @@
 # My first React Project - Todo App
+### Checkout my project here
+[https://naughty-minsky-e7ecb7.netlify.app/](https://naughty-minsky-e7ecb7.netlify.app/)
 
 ## Frontend development workflow
 
